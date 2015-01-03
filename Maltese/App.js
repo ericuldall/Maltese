@@ -1,5 +1,4 @@
 var Maltese_App = (function(){
-
     var App = this;
     //initialize app
     (function(){
@@ -8,4 +7,5 @@ var Maltese_App = (function(){
         App.Router = new Maltese_Http_Router();
     })();
 
+    return App;
 })();
