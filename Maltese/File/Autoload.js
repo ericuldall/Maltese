@@ -1,25 +1,18 @@
 var Maltese_File_Autoload = function(File){
-    this.File = File;
-
-    var _this = this;
-    
     var _load = (function(){
         var element = document.createElement("script");
-        element.src = _path(_this.File);
+        element.src = _path(File);
         document.body.appendChild(element);
 
         try{
-            while( typeof eval(_object(_this.File)) === "undefined" ){
-                console.log('Waiting on '+_object(_this.File)+'...');
-                event.update(_this.Status);
+            while( typeof eval(_object(File)) === "undefined" ){
+                console.log('Waiting on '+_object(File)+'...');
             }
         }catch(e){
-            return false;
+            return e;
         }
         //we assume this will work,
         //otherwise will be handled by exception handling
-        event.update(_this.Status);
-
         return true;
 
     })();
@@ -34,10 +27,11 @@ var Maltese_File_Autoload = function(File){
     })(File);
 
     return new Promise(function(resolve, reject){
-        if( _load() ){
-            resolve(_object(_this.File));
+        var loaded = _load();
+        if( loaded === true ){
+            resolve(_object(File));
         }else{
-            reject(e);
+            reject(loaded);
         }
     });
 };
