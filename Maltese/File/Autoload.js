@@ -5,7 +5,7 @@ var Maltese_File_Autoload = function(File){
         document.body.appendChild(element);
 
         try{
-            while( typeof eval(_object(File)) === "undefined" ){
+            while(eval('typeof ' + _object(File) + ' === "undefined"')){
                 console.log('Waiting on '+_object(File)+'...');
             }
         }catch(e){
