@@ -37,7 +37,7 @@ var Maltese = (function (Environments) {
     return {
         App: function () {
             if (!App) {
-                App = new App();
+                App = new Maltese_App();
             }
             return App;
         },
